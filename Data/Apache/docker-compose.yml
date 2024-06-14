@@ -1,0 +1,10 @@
+version: '2'
+services:
+  web:
+    image: vulhub/ghostscript:9.21-with-flask
+    command: sh setting.sh
+    volumes:
+      - ./app.py:/usr/src/app.py
+      - ./setting.sh:/usr/src/setting.sh
+    ports:
+      - "8000:8000"
