@@ -1,0 +1,4 @@
+same_seeds(int(args.seed)) 设置种子
+config(args)  相关配置
+新建experiment类  初始化时选择模型和优化器
+continual_learning  开始训练

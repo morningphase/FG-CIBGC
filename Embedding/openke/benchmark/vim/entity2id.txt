@@ -1,0 +1,32 @@
+31
+/etc/localtime 20
+11582:bash 45
+/home/victim/Desktop/vim/.abc (21st copy).log.swp 33
+/home/victim/Desktop/vim/ 28
+/home/victim/Desktop/vim/abc (21st copy).log~ 39
+/proc/10390/pipe/4 44
+/proc/11404/socket/4 3
+abc (21st copy).log~ 38
+/home/victim/Desktop/vim/.abc (21st copy).log.swx 34
+.abc (21st copy).log.swp 35
+/proc/10390/pipe/3 43
+10390:bash 0
+/home/victim/Desktop/vim/.abc (20th copy).log.swp 29
+I 24
+/home/victim/.viminfo 40
+/home/victim/Desktop/vim/I 25
+/home/victim/Desktop/vim/abc (21st copy).log 31
+stdout 4
+(null) 26
+abc.log 37
+/proc/10390/fd/255 42
+stdin 1
+/home/victim/Desktop/vim/log.txt 21
+/home/victim/Desktop/vim/abc (20th copy).log~ 30
+11404:vim 2
+abc (20th copy).log 23
+/home/victim/Desktop/vim/abc (20th copy).log 22
+stderr 41
+abc (10th copy).log 36
+abc (21st copy).log 32
+abc (20th copy).log~ 27
