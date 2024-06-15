@@ -106,6 +106,8 @@ python3 evaluate.py --dataset $dataset > output.txt
 
 ## Reproducibility
 
+We report the results of all models in runs with 20 random seeds to minimize the impact of random noise
+
 Use `bash.sh` to reproduce the results of performance comparison.
 
 ```
