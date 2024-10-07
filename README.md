@@ -2,8 +2,7 @@
 
 ## Breif Overview
 
-> Attacks on multimedia services have notably intensified, which makes attack investigation increasingly important. Vital for attack investigation, behavior abstraction converts complex audit logs into human-understandable high-level behaviors, streamlining investigation to focus solely on key behaviors. Existing work focused on coarse-grained behavior samples and pre-obtained behaviors, neglecting the increasingly fine-grained and evolving behaviors in real-world scenarios. To address above issues, this paper presents a unified system which called Lifelong Behavior Abstraction System (LBAS). LBAS can perform lifelong behavior abstraction using fine-grained behavior samples. Firstly, we identify fine-grained behavior samples matching individual execution by utilizing additional multi-source logs. Secondly, we introduce a novel disentanglebased lifelong knowledge graph (KG) embedding to learn, transfer and update disentangled embedding. Lastly, we use a Term Frequency–Inverse Document Frequency (TF-IDF) weighted average pooling to represent behavior samples, coupled with an adapted incremental clustering algorithm. To better validate the efficiency of LBAS, we construct a dataset which contains multi-source logs precluded in existing datasets. Extensive experiments demonstrate
-> LBAS’ superiority in generating fine-grained behavior samples and achieving lifelong behavior abstraction.
+> Attacks on multimedia services
 
 ## Python environment setup with Conda
 
