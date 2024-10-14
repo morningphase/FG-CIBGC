@@ -9,7 +9,7 @@ algorithms=("CWR" "EWC" "finetune" "LAN" "EMR" "LKGE" "MEAN" "PNN" "retraining" 
 datasets=("Apache")
 
 # 聚类数组
-clusters=("incdbscan" "DenStream" "minibathkm" "SA")
+classifications=("incdbscan" "DenStream" "minibathkm" "SA")
 
 
 # batch size数组
@@ -41,8 +41,8 @@ reconstruct_weight=($rw1 $rw2 $rw3)
 # attention_weight 参数数组
 attention_weight=($rw1 $rw2 $rw3)
 
-# cluster数目
-n_cluster=(5 10 20)
+# classification数目
+n_classification=(5 10 20)
 
 # eps_factor 参数数组
 eps_factor=(1 2 4)
@@ -88,43 +88,43 @@ for dataset in "${datasets[@]}"; do
                 command_embeding="python3 run.py --dataset=$dataset --kg=$algorithm -learning_rate=$lr -emb_dim=$emd_dim -batch_size=$bs"
                 $command_embeding > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs.txt"
                 # 循环遍历参数
-                for cluster in "${clusters[@]}"; do
-                    cd ../Cluster
-                    echo "Dataset: $dataset cluster: $cluster."
-                    if [ "$cluster" = "incdbscan" ]; then
+                for classification in "${classifications[@]}"; do
+                    cd ../Classification
+                    echo "Dataset: $dataset classification: $classification."
+                    if [ "$classification" = "incdbscan" ]; then
                       for eps in "${eps_factor[@]}"; do
                         for min_p in "${min_pts[@]}"; do
-                          python3 run.py --dataset=$dataset --cluster=$cluster --eps_factor=$eps --min_pts=$min_p
+                          python3 run.py --dataset=$dataset --classification=$classification --eps_factor=$eps --min_pts=$min_p
                           cd ../Tools
                           command="python3 evaluate.py --dataset $dataset"
-                          $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$cluster-$eps-$min_p.txt"
+                          $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$classification-$eps-$min_p.txt"
                           echo "Single Experiment completed."
-                          cd ../Cluster
+                          cd ../Classification
                           done
                         done
-                    elif [ "$cluster" = "DenStream" ]; then
+                    elif [ "$classification" = "DenStream" ]; then
                       for eps in "${eps_factor[@]}"; do
                         for lambd_n in "${lambd[@]}"; do
                           for beta1 in "${beta[@]}"; do
                             for mu1 in "${mu[@]}"; do
-                              python3 run.py --dataset=$dataset --cluster=$cluster --eps_factor=$eps --lambd=$lambd_n --beta=$beta1 --mu=$mu1
+                              python3 run.py --dataset=$dataset --classification=$classification --eps_factor=$eps --lambd=$lambd_n --beta=$beta1 --mu=$mu1
                               cd ../Tools
                               command="python3 evaluate.py --dataset $dataset"
-                              $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$cluster-$eps-$lambd_n-$beta1-$mu1.txt"
+                              $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$classification-$eps-$lambd_n-$beta1-$mu1.txt"
                               echo "Single Experiment completed."
-                              cd ../Cluster
+                              cd ../Classification
                               done
                             done
                           done
                         done
-                    elif [ "$cluster" = "minibathkm" ]; then
-                      for n_c in "${n_cluster[@]}"; do
-                        python3 run.py --dataset=$dataset --cluster=$cluster --n_cluster=$n_c
+                    elif [ "$classification" = "minibathkm" ]; then
+                      for n_c in "${n_classification[@]}"; do
+                        python3 run.py --dataset=$dataset --classification=$classification --n_classification=$n_c
                         cd ../Tools
                         command="python3 evaluate.py --dataset $dataset"
-                        $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$cluster-$n_c.txt"
+                        $command > "../$output_dir/$algorithm-$dataset-$lr-$emd_dim-$bs-$classification-$n_c.txt"
                         echo "Single Experiment completed."
-                        cd ../Cluster
+                        cd ../Classification
                         done
                     fi
                   done

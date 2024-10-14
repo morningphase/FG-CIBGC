@@ -7,7 +7,7 @@ algorithms=("CWR" "EWC" "finetune" "LAN" "LKGE" "MEAN" "PNN" "retraining" "SI" "
 datasets=("Apache")
 
 # 聚类数组
-clusters=("incdbscan" "DenStream" "minibathkm")
+classifications=("incdbscan" "DenStream" "minibathkm")
 
 # 设置输出目录
 output_dir="results"
@@ -26,13 +26,13 @@ for dataset in "${datasets[@]}"; do
         echo "Dataset: $dataset Embedding: $algorithm."
         python3 run.py --dataset=$dataset --kg=$algorithm
         # 循环遍历参数
-        for cluster in "${clusters[@]}"; do
-            cd ../Cluster
-            echo "Dataset: $dataset cluster: $cluster."
-            python3 run.py --dataset=$dataset --cluster=$cluster
+        for classification in "${classifications[@]}"; do
+            cd ../Classification
+            echo "Dataset: $dataset classification: $classification."
+            python3 run.py --dataset=$dataset --classification=$classification
             cd ../Tools
             command="python3 evaluate.py --dataset $dataset"
-            $command > "../$output_dir/$algorithm-$dataset-$cluster.txt"
+            $command > "../$output_dir/$algorithm-$dataset-$classification.txt"
             echo "Experiment completed."
         done
         cd ../Embedding

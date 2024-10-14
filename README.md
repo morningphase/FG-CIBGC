@@ -2,7 +2,7 @@
 
 ## Breif Overview
 
-> Attacks on multimedia services
+> Learning-based Behavior Graph Classification (BGC) has been widely adopted in Internet infrastructure for partitioning and identifying similar behavior graphs. However, the research communities realize significant limitations when deploying existing proposals in real-world scenarios.  The challenges are mainly concerned with (\romannumeral1) fine-grained emerging behavior graphs, and (\romannumeral2) incremental model adaptations. To tackle these problems, we propose to (\romannumeral1) mine semantics in multi-source logs using Large Language Models (LLMs) under In-Context Learning (ICL), and (\romannumeral2) bridge the gap between Out-Of-Distribution (OOD) detection and class-incremental graph learning. Based on the above core ideas, we develop the first unified framework termed as \textbf{F}ine-\textbf{G}rained and \textbf{C}lass-\textbf{I}ncremental \textbf{B}ehavior \textbf{G}raph \textbf{C}lassification (\textbf{FG-CIBGC}). It consists of two novel modules, i.e., gPartition and gAdapt, that are used for partitioning fine-grained graphs and performing unknown class detection and adaptation, respectively. To validate the efficacy of FG-CIBGC, we introduce a new benchmark, comprising a new 4,992-graph, 32-class dataset generated from 8 attack scenarios, as well as a novel Edge Intersection over Union (EIoU) metric for evaluation. Extensive experiments demonstrate FG-CIBGC's superior performance on fine-grained and class-incremental BGC tasks, as well as its ability to generate fine-grained behavior graphs that facilitate downstream tasks. The code and dataset are available at: https://anonymous.4open.science/r/FG-CIBGC-4D62/README.md.
 
 ## Python environment setup with Conda
 
@@ -13,8 +13,9 @@ install anaconda：https://repo.anaconda.com/archive/index.html.
 install torch-scatter 2.1.2+pt21cu121：https://pytorch-geometric.com/whl/torch-2.1.2%2Bcu121.html.
 
 ```
-conda create --name LBAS
-conda activate LBAS
+conda create --name FG-CIBGC
+conda activate FG-CIBGC
+pip install openai
 pip install -r requirments.txt
 ```
 
@@ -37,26 +38,6 @@ Here is the description of datasets:
 
 
 
-
-
-## Directory
-
-We present a brief introduction about the directories.
-
-- Cluster/    # Clustering code
-- Data/    # The directory for storing data and intermediate results of the algorithm.
-- Embedding/    # Embedding code.
-- Parse/    # Data parsing and graph construction code.
-- Tools/    # Utility functions.
-- README.md # Guide to the project
-- ablation_study.sh  # Script for Ablation Study
-- basemode_grid_search.sh  # Script for grid search
-- bash.sh * # Script for simply running the project 
-- image.png #An overview image of LBAS
-- main_table_kfactor.sh  # Script for running hyper-parameter sensitivity in terms of changing K
-- main_table_topn.sh  # Script for running hyper-parameter sensitivity in terms of changing n
-- requirements.txt # Dependencies installed py pip install
-
 ## Workflow
 
 In this section, we introduce the workflow of the overall project.
@@ -75,23 +56,23 @@ python hlogs_parse.py ---datasetname=$dataset
 #### Embedding
 
 The code in this directory accomplishes two main tasks. Firstly, "run.py" correlates high-level
-behavior patterns with audit logs, ultimately generating fine-grained behavior graphs. Secondly, "run.py" executes
-lifelong knowledge graph embedding. See the following command :
+behavior units with audit logs, ultimately generating fine-grained behavior graphs. Secondly, "run.py" executes
+graph embedding. See the following command :
 
 ```
 cd Embedding
 python run.py --dataset=$dataset --kg=$algorithm
 ```
 
-#### Cluster 
+#### Classification 
 
-The code in this directory aims to produce clustering results. First, execute the pooling algorithm
-to generate embeddings for each behavior graph, then perform incremental clustering algorithm. See the following
+The code in this directory aims to produce classification results. First, execute the pooling algorithm
+to generate embeddings for each behavior graph, then perform classification algorithm. See the following
 command :
 
 ```
-cd Cluster
-python run.py --dataset=$dataset --cluster=$cluster
+cd Classification 
+python run.py --dataset=$dataset --classification=$classification
 ```
 
 #### Evaluate
@@ -119,16 +100,4 @@ Use `basemode_grid_search.sh` to  reproduce the results of grid search.
 bash basemode_grid_search.sh
 ```
 
-Use `ablation_study.sh` to reproduce the results of ablation study.
-
-```
-bash ablation_study.sh
-```
-
-Use `main_table_kfactor.sh` and `main_table_topn.sh` to reproduce the results of hyper-parameter sensitivity.
-
-```
-bash main_table_kfactor.sh
-bash main_table_topn.sh
-```
 
