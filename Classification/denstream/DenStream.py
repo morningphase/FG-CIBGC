@@ -27,7 +27,7 @@ class DenStream:
         Attributes
         ----------
         labels_ : array, shape = [n_samples]
-            Cluster labels for each point in the dataset given to fit().
+            Classification labels for each point in the dataset given to fit().
             Noisy samples are given the label -1.
 
         Notes
@@ -105,7 +105,7 @@ class DenStream:
         Returns
         -------
         y : ndarray, shape (n_samples,)
-            Cluster labels
+            Classification labels
         """
 
         #X = check_array(X, dtype=np.float64, order="C")

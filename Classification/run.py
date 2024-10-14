@@ -116,9 +116,9 @@ def log_fusion_embedding(graph_file, node_map, edge_map, args):
 def arg_parse():
     parser = argparse.ArgumentParser(description="Command-line arguments.")
     parser.add_argument('--watson', action='store_true')
-    parser.add_argument('--cluster', type=str, default='SA')
+    parser.add_argument('--classification', type=str, default='SA')
     parser.add_argument('--dataset', type=str, default='Apache')
-    parser.add_argument('--n_cluster', type=int, default=20)
+    parser.add_argument('--n_classification', type=int, default=20)
     parser.add_argument('--min_pts', type=int, default=2)
     parser.add_argument('--lambd', type=float, default=0.1)
     parser.add_argument('--beta', type=float, default=0.5)
